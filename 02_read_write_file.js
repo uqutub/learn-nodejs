@@ -2,35 +2,24 @@ var fs = require('fs');
 
 function readFile(srcPath) {
     fs.readFile(srcPath, 'utf8', function (err, data) {
-        if (err) {
-            console.log('Read Err ', err)
-        } else {
-            console.log('Read ', data);
-        }
+        (err) ? console.log('Read Err ', err) : console.log('Read ', data);
     });
 }
-
 function writeFile(savPath, data) {
     fs.writeFile(savPath, data, function (err) {
-        if (err) {
-            console.log('Write Err: ', err);
-        } else {
-            console.log('Write Successfully!!');
-        }
+        (err) ? console.log('Write Err: ', err) : console.log('Write Successfully!!');
     });
 }
-
 function appendFile(savPath, data) {
     fs.appendFile(savPath, data, function (err) {
-        if (err) {
-            console.log('Append Err: ', err);
-        } else {
-            console.log('Append Successfully!!');
-        }
+        (err) ? console.log('Append Err: ', err) : console.log('Append Successfully!!');
     });
 }
 
 // writeFile('./abc.txt', 'Abc Yhaoo My First File...');
+// readFile('./abc.txt');
+appendFile('./abc.txt', 'Abc Yhaoo My First File... 123');
+
 
 
 

@@ -4,6 +4,14 @@ var qs = require('querystring');
 
 const usersList = [{id: 1, name: 'Abc'}, {id: 2, name: 'xyz'}];
 
+
+// GET      ALL FETCH SELET         ALL TODOS
+// GET/id   GET SPECIFIC RECORD     TODO
+// POST     INSERT/CREATE           ADD
+// PUT      UPDATE                  UPDATE
+// DELETE   DELETE                  DELETE
+
+
 // Application Routes/Requests:
 //      Get:   /     /users     /user       /user/id
 //      Post:  /user
@@ -19,9 +27,12 @@ http.createServer(function (req, res) {
     if (req.url == '/user' && req.method == "POST") {
         var body = '';
         req.on('data', function (data) {
-            console.log('on data ', data);
             body += data;
-            
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6) {
+                // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+                request.connection.destroy();
+            }
         });
         req.on('end', function () {
             console.log('body ', body);

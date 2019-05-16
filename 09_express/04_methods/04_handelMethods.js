@@ -5,9 +5,9 @@ const app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(bodyParser());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // GET
 app.get('/', function (req, res) {
@@ -18,6 +18,9 @@ app.get('/', function (req, res) {
 app.post('/', (req, res) => {
     res.end(JSON.stringify(req.body));
 });
+
+// app.put
+// app.delete
 
 
 app.listen(app.get('port'), function () {
